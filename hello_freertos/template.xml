@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template_settings>
+	<template
+		name="Hello FreeRTOS"
+		description="Run FreeRTOS with LwIP"
+		file_to_open="hello_freertos.c"
+		details="Hello FreeRTOS uses the Real Time Engineers Ltd. FreeRTOS. You can use this example as a starting point for developing Nios II FreeRTOS applications.
+			\n
+			\nThe BSP for this template is based on the FreeRTOS operating system.
+			\n
+			\nFor information about how this software example relates to Nios II hardware design examples,
+			\nrefer to the Design Examples page of the Nios II documentation available with your installation at:
+			\n&lt;installation_directory&gt;/nios2eds/documents/index.htm.
+			">
+	</template>
+	<stf>
+		<os_spec name="FreeRTOS">
+		</os_spec>
+	</stf>
+	<create-this>
+		<app 	name="hello_freertos"
+			nios2-app-generate-makefile-args=" --set OBJDUMP_INCLUDE_SOURCE 1 --src-files hello_freertos.c"
+			bsp="freertos_default">
+		</app>
+		<bsp name="freertos_default" type="freertos">
+		</bsp>
+	</create-this>
+</template_settings>

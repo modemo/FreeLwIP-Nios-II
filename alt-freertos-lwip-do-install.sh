@@ -188,35 +188,49 @@ cp FreeRTOS_src/Demo/Common/include/* "${INST_PATH}/freertos_demo/inc";
 echo -e "\n2. Copying packages to Nios II IDE"
 
 # now lets copy our stuff to the altera directory
-echo -n "    - FreeRTOS..: ";
+echo -n "    - FreeRTOS..........: ";
 if cp -rf "${INST_PATH}/freertos" "${COMPONENTS}"; then
 	echo "Success";
 else
 	echo "Failed with error code: $?";
 fi;
 
-echo -n "    - LwIP......: ";
+echo -n "    - FreeRTOS+ Trace...: ";
+if cp -rf "${INST_PATH}/freertos_plus_trace" "${COMPONENTS}"; then
+	echo "Success";
+else
+	echo "Failed with error code: $?";
+fi;
+
+echo -n "    - LwIP..............: ";
 if cp -rf "${INST_PATH}/lwip" "${COMPONENTS}"; then
 	echo "Success";
 else
 	echo "Failed with error code: $?";
 fi;
 
-echo -n "    - HAL.......: ";
+echo -n "    - HAL...............: ";
 if cp -rf "${INST_PATH}/altera_nios2" "${COMPONENTS}"; then
 	echo "Success";
 else
 	echo "Failed with error code: $?";
 fi;
 
-#echo -n "    - Driver....: ";
+#echo -n "    - Driver............: ";
 #if cp -rf "${INST_PATH}/altera_triple_speed_ethernet" "${ALT_PATH}/ip/altera/triple_speed_ethernet/lib/sopc_builder"; then
 #	echo "Success";
 #else
 #	echo "Failed with error code: $?";
 #fi;
 
-echo -n "    - Demo......: ";
+echo -n "    - Hello World.......: ";
+if cp -rf "${INST_PATH}/hello_freertos" "${EXAMPLES}"; then
+	echo "Success";
+else
+	echo "Failed with error code: $?";
+fi;
+
+echo -n "    - LwIP Demo.........: ";
 if cp -rf "${INST_PATH}/freertos_demo" "${EXAMPLES}"; then
 	echo "Success";
 else

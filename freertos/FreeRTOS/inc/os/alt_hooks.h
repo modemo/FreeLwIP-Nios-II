@@ -29,13 +29,20 @@ extern void vPortSysTickHandler(void);
  * Thisheader provides definitions for the operating system hooks used by the HAL.
  */
 
-#define ALT_OS_TIME_TICK	vPortSysTickHandler
-#define ALT_OS_INIT()		alt_heapsem = xSemaphoreCreateRecursiveMutex();		\
-							alt_envsem = xSemaphoreCreateRecursiveMutex();
-#define ALT_OS_STOP()		// vTaskEndScheduler();
+#if (configUSE_TRACE_FACILITY && defined(__freertos_plus_trace__))
+#define OS_TRACE_INIT()         vTraceInitTraceData()
+#else
+#define OS_TRACE_INIT()
+#endif
 
-#define ALT_OS_INT_ENTER()	// ....
-#define ALT_OS_INT_EXIT()	// ....
+#define ALT_OS_TIME_TICK        vPortSysTickHandler
+#define ALT_OS_INIT()           OS_TRACE_INIT();                                    \
+                                alt_heapsem = xSemaphoreCreateRecursiveMutex();     \
+                                alt_envsem = xSemaphoreCreateRecursiveMutex();
+#define ALT_OS_STOP()           // vTaskEndScheduler();
+
+#define ALT_OS_INT_ENTER()      // ....
+#define ALT_OS_INT_EXIT()       // ....
 
 #endif /* ALT_ASM_SRC */
 

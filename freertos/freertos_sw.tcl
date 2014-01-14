@@ -7,15 +7,13 @@
 create_os FreeRTOS
 
 # Set UI display name
-set_sw_property display_name "Real Time Engineers Ltd FreeRTOS 7.2.0"
+set_sw_property display_name "FreeRTOS"
 
 # This OS "extends" HAL BSP type
 set_sw_property extends_bsp_type HAL
 
 # The version of this software
-# Note: this reflects the version of the Altera release that this file
-#       shipped in. The FreeRTOS version is 7.2.0
-set_sw_property version 12.0
+set_sw_property version 7.5.2
 
 # Location in generated BSP that above sources will be copied into
 # Suggestion: Keep this the same (case and all) as that where the OS
@@ -163,7 +161,7 @@ To use this method in combination with method 1 set configCHECK_FOR_STACK_OVERFL
 #
 # Debug Settings
 #
-add_sw_setting boolean system_h_define debug.use_trace_facility OS_USE_TRACE_FACILITY 1 "Set to 1 if you wish to include additional structure members and functions to assist with execution visualisation and tracing."
+add_sw_setting boolean system_h_define debug.use_trace_facility OS_USE_TRACE_FACILITY 0 "Set to 1 if you wish to include additional structure members and functions to assist with execution visualisation and tracing."
 
 
 #
