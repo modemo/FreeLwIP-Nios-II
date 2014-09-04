@@ -48,7 +48,7 @@
 
 /* semaphore to protect the heap */
 
-xSemaphoreHandle alt_envsem;
+SemaphoreHandle_t alt_envsem;
 
 /* __env_lock needs to provide recursive mutex locking */
 

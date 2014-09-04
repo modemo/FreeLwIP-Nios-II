@@ -2,7 +2,7 @@
 <template_settings>
 	<template
 		name="Hello FreeRTOS"
-		description="Run FreeRTOS with LwIP"
+		description="Hello world from 2 tasks"
 		file_to_open="hello_freertos.c"
 		details="Hello FreeRTOS uses the Real Time Engineers Ltd. FreeRTOS. You can use this example as a starting point for developing Nios II FreeRTOS applications.
 			\n

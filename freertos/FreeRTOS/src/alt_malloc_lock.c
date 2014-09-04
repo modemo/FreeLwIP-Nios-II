@@ -48,7 +48,7 @@
 
 /* semaphore to protect the heap */
 
-xSemaphoreHandle alt_heapsem;
+SemaphoreHandle_t alt_heapsem;
 
 /* __malloc_lock needs to provide recursive mutex locking */
 

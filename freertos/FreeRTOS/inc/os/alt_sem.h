@@ -76,9 +76,9 @@
  
 #include "priv/alt_sem_freertos.h"
 
-#define ALT_SEM(sem)					xSemaphoreHandle sem;
-#define ALT_EXTERN_SEM(sem)				extern xSemaphoreHandle sem;
-#define ALT_STATIC_SEM(sem)				static xSemaphoreHandle sem;
+#define ALT_SEM(sem)					SemaphoreHandle_t sem;
+#define ALT_EXTERN_SEM(sem)				extern SemaphoreHandle_t sem;
+#define ALT_STATIC_SEM(sem)				static SemaphoreHandle_t sem;
 
 #define ALT_SEM_CREATE(sem, value)		alt_sem_create (sem, value)
 #define ALT_SEM_PEND(sem, timeout)		alt_sem_pend (sem, timeout)

@@ -27,12 +27,11 @@
 * of California and by the laws of the United States of America.              *
 *                                                                             *
 ******************************************************************************/
-#ifdef TSE_MY_SYSTEM
 
+#ifdef TSE_MY_SYSTEM
 #include "altera_avalon_tse.h"
 #include "altera_avalon_tse_system_info.h"
 #include "system.h"
- 
 
 alt_tse_system_info tse_mac_device[MAXNETS] = {
         /************************************************************************************/

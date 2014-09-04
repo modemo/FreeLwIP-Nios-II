@@ -216,12 +216,12 @@ else
 	echo "Failed with error code: $?";
 fi;
 
-#echo -n "    - Driver............: ";
-#if cp -rf "${INST_PATH}/altera_triple_speed_ethernet" "${ALT_PATH}/ip/altera/triple_speed_ethernet/lib/sopc_builder"; then
-#	echo "Success";
-#else
-#	echo "Failed with error code: $?";
-#fi;
+echo -n "    - Driver............: ";
+if cp -rf "${INST_PATH}/altera_triple_speed_ethernet" "${ALT_PATH}/ip/altera/triple_speed_ethernet/lib/sopc_builder"; then
+	echo "Success";
+else
+	echo "Failed with error code: $?";
+fi;
 
 echo -n "    - Hello World.......: ";
 if cp -rf "${INST_PATH}/hello_freertos" "${EXAMPLES}"; then

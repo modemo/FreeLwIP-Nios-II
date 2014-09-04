@@ -1,5 +1,5 @@
 /*
-    FreeRTOS V7.5.2 - Copyright (C) 2013 Real Time Engineers Ltd.
+    FreeRTOS V8.1.2 - Copyright (C) 2013 Real Time Engineers Ltd.
 
     VISIT http://www.FreeRTOS.org TO ENSURE YOU ARE USING THE LATEST VERSION.
 
@@ -83,12 +83,13 @@
  * THESE PARAMETERS ARE DESCRIBED WITHIN THE 'CONFIGURATION' SECTION OF THE
  * FreeRTOS API DOCUMENTATION AVAILABLE ON THE FreeRTOS.org WEB SITE. 
  *----------------------------------------------------------*/
+#define configENABLE_BACKWARD_COMPATIBILITY			OS_ENABLE_BACKWARD_COMPATIBILITY
 #define configUSE_PREEMPTION						OS_USE_PREEMPTION
 #define configUSE_IDLE_HOOK							OS_USE_IDLE_HOOK
 #define configUSE_TICK_HOOK							OS_USE_TICK_HOOK
-#define configTICK_RATE_HZ							( ( portTickType ) OS_TICK_RATE_HZ )
+#define configTICK_RATE_HZ							( ( TickType_t ) OS_TICK_RATE_HZ )
 #define configCPU_CLOCK_HZ							( ( unsigned long ) OS_CLK_FREQ )
-#define configMAX_PRIORITIES						( ( unsigned portBASE_TYPE ) OS_MAX_PRIORITIES )
+#define configMAX_PRIORITIES						( OS_MAX_PRIORITIES )
 #define configMINIMAL_STACK_SIZE					( OS_MINIMAL_STACK_SIZE )
 #define configISR_STACK_SIZE						configMINIMAL_STACK_SIZE
 #define configTOTAL_HEAP_SIZE						( ( size_t ) OS_TOTAL_HEAP_SIZE )

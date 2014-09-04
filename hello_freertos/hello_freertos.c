@@ -10,7 +10,7 @@
 #define TASK2_PRIORITY      2
 
 /* Stack overflow hook */
-void vApplicationStackOverflowHook( xTaskHandle xTask, signed char *pcTaskName )
+void vApplicationStackOverflowHook( TaskHandle_t xTask, signed char *pcTaskName )
 {
   while (1);
 }
@@ -21,7 +21,7 @@ void vTask1( void *pvParameters )
   while (1)
   { 
     printf("Hello from task 1\n");
-    vTaskDelay(3000/portTICK_RATE_MS);
+    vTaskDelay(3000/portTICK_PERIOD_MS);
   }
 }
 /* Prints "Hello World" and sleeps for three seconds */
@@ -30,7 +30,7 @@ void vTask2( void *pvParameters )
   while (1)
   { 
     printf("Hello from task 2\n");
-    vTaskDelay(3000/portTICK_RATE_MS);
+    vTaskDelay(3000/portTICK_PERIOD_MS);
   }
 }
 /* The main function creates two task and starts multi-tasking */

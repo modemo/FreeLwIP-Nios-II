@@ -7,7 +7,7 @@
 create_sw_package freertos_plus_trace
 
 # The version of this software
-set_sw_property version 2.5.0
+set_sw_property version 2.6.0
 
 # (Don't) initialize the driver in alt_sys_init()
 set_sw_property auto_initialize false
@@ -73,6 +73,10 @@ add_sw_setting decimal_number system_h_define n_semaphore OS_TRACE_NSemaphore 12
 
 add_sw_setting decimal_number system_h_define n_mutex OS_TRACE_NMutex 10 ""
 
+add_sw_setting decimal_number system_h_define n_mutex OS_TRACE_NTimer 2 ""
+
+add_sw_setting decimal_number system_h_define n_mutex OS_TRACE_NEventGroup 2 ""
+
 add_sw_setting decimal_number system_h_define name_len_isr OS_TRACE_NameLenISR 15 ""
 
 add_sw_setting decimal_number system_h_define name_len_queue OS_TRACE_NameLenQueue 15 ""
@@ -80,6 +84,10 @@ add_sw_setting decimal_number system_h_define name_len_queue OS_TRACE_NameLenQue
 add_sw_setting decimal_number system_h_define name_len_semaphore OS_TRACE_NameLenSemaphore 15 ""
 
 add_sw_setting decimal_number system_h_define name_len_mutex OS_TRACE_NameLenMutex 15 ""
+
+add_sw_setting decimal_number system_h_define name_len_mutex OS_TRACE_NameLenTimer 15 ""
+
+add_sw_setting decimal_number system_h_define name_len_mutex OS_TRACE_NameLenEventGroup 15 ""
 
 add_sw_setting quoted_string system_h_define trace_description OS_TRACE_DESCRIPTION "Traceanalyzer Recorder" "String displayed in Traceanalyzer"
 
@@ -101,10 +109,14 @@ add_sw_setting boolean system_h_define include_isr_tracing OS_TRACE_INCLUDE_ISR_
 
 add_sw_setting boolean system_h_define include_object_delete OS_TRACE_INCLUDE_OBJECT_DELETE 1 "This must be enabled (1) if tasks, queues or other traced kernel objects are deleted at runtime."
 
+add_sw_setting boolean system_h_define include_object_delete OS_TRACE_INCLUDE_MEMMANG_EVENTS 1 "This controls if malloc and free calls should be traced. Set this to zero to exclude malloc/free calls from the tracing."
+
 add_sw_setting boolean_define_only system_h_define trace_store_mode_ring_buffer OS_TRACE_STORE_MODE_RING_BUFFER 0 "If this is zero (0), the recording is stopped when the buffer becomes full."
 
 add_sw_setting decimal_number system_h_define stop_after_n_events OS_TRACE_STOP_AFTER_N_EVENTS -1 "STOP_AFTER_N_EVENTS is intended for tests of the ring buffer mode (when RECORDER_STORE_MODE is STORE_MODE_RING_BUFFER)."
 
 add_sw_setting boolean system_h_define use_implicit_ife_rules OS_TRACE_USE_IMPLICIT_IFE_RULES 1 "Instance Finish Events"
 
-add_sw_setting quoted_string system_h_define team_license_code OS_TRACE_TEAM_LICENSE_CODE "" "If no team license is available, this should be an empty string."
+add_sw_setting boolean system_h_define use_16bit_object_handling OS_TRACE_USE_16BIT_OBJECT_HANDLES 0 "If set to 0 (zero), the recorder uses 8-bit handles to identify kernel objects such as tasks and queues. This limits the supported number of concurrently active objects to 255 of each type (object class)."
+
+add_sw_setting boolean system_h_define heap_size_below_16m OS_TRACE_HEAP_SIZE_BELOW_16M 0 "An integer constant that can be used to reduce the buffer usage of memory allocation events (malloc/free). This value should be 1 if the heap size is below 16 MB (2^24 byte), and you can live with addresses truncated to the lower 24 bit. Otherwise set it to 0 to get the full 32-bit addresses."

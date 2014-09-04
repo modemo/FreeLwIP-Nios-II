@@ -1,5 +1,5 @@
 /*
-    FreeRTOS V7.5.2 - Copyright (C) 2013 Real Time Engineers Ltd.
+    FreeRTOS V8.1.2 - Copyright (C) 2014 Real Time Engineers Ltd.
 
     VISIT http://www.FreeRTOS.org TO ENSURE YOU ARE USING THE LATEST VERSION.
 
@@ -88,7 +88,7 @@
 #include "task.h"
 
 /* Interrupts are enabled. */
-#define portINITIAL_ESTATUS     ( portSTACK_TYPE ) 0x01 
+#define portINITIAL_ESTATUS     ( StackType_t ) 0x01 
 
 /*-----------------------------------------------------------*/
 
@@ -101,10 +101,10 @@ static inline void prvReadGp( unsigned long *ulValue )
 /* 
  * See header file for description. 
  */
-portSTACK_TYPE *pxPortInitialiseStack( portSTACK_TYPE *pxTopOfStack, pdTASK_CODE pxCode, void *pvParameters )
+StackType_t *pxPortInitialiseStack( StackType_t *pxTopOfStack, TaskFunction_t pxCode, void *pvParameters )
 {    
-portSTACK_TYPE *pxFramePointer = pxTopOfStack - 1;
-portSTACK_TYPE xGlobalPointer;
+StackType_t *pxFramePointer = pxTopOfStack - 1;
+StackType_t xGlobalPointer;
 
     prvReadGp( &xGlobalPointer ); 
 
@@ -112,7 +112,7 @@ portSTACK_TYPE xGlobalPointer;
     *pxTopOfStack = 0xdeadbeef;
     pxTopOfStack--;
 
-    *pxTopOfStack = ( portSTACK_TYPE ) pxFramePointer;
+    *pxTopOfStack = ( StackType_t ) pxFramePointer;
     pxTopOfStack--;
     
     *pxTopOfStack = xGlobalPointer; 
@@ -120,7 +120,7 @@ portSTACK_TYPE xGlobalPointer;
     /* Space for R23 to R16. */
     pxTopOfStack -= 9;
 
-    *pxTopOfStack = ( portSTACK_TYPE ) pxCode;
+    *pxTopOfStack = ( StackType_t ) pxCode;
     pxTopOfStack--;
 
     *pxTopOfStack = portINITIAL_ESTATUS;
@@ -128,7 +128,7 @@ portSTACK_TYPE xGlobalPointer;
     /* Space for R15 to R5. */
     pxTopOfStack -= 12;
 
-    *pxTopOfStack = ( portSTACK_TYPE ) pvParameters;
+    *pxTopOfStack = ( StackType_t ) pvParameters;
 
     /* Space for R3 to R1, muldiv and RA. */
     pxTopOfStack -= 5;
@@ -140,20 +140,21 @@ portSTACK_TYPE xGlobalPointer;
 /* 
  * See header file for description. 
  */
-portBASE_TYPE xPortStartScheduler( void )
-{
-	// Just load the task which is currently revered to by TCB
+BaseType_t xPortStartScheduler( void )
+{	
+	/* Start the first task. */
     asm volatile (  " movia r2, restore_sp_from_pxCurrentTCB        \n"
                     " jmp r2                                          " );
 
-    // This should never be reached
-    return 0;
+	/* Should not get here! */
+	return 0;
 }
 /*-----------------------------------------------------------*/
 
 void vPortEndScheduler( void )
 {
-	// It is unlikely that the NIOS2 port will require this function as there is nothing to return to.
+	/* It is unlikely that the NIOS2 port will require this function as there
+	is nothing to return to.  */
 }
 /*-----------------------------------------------------------*/
 
@@ -189,4 +190,3 @@ void fixed_alt_irq_enable_all()
         lastContext = 0;
     }
 }
-

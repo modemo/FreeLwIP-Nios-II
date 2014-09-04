@@ -1,5 +1,5 @@
 /*
-    FreeRTOS V7.5.2 - Copyright (C) 2013 Real Time Engineers Ltd.
+    FreeRTOS V8.1.2 - Copyright (C) 2014 Real Time Engineers Ltd.
 
     VISIT http://www.FreeRTOS.org TO ENSURE YOU ARE USING THE LATEST VERSION.
 
@@ -88,21 +88,22 @@ extern "C" {
 #define portDOUBLE		double
 #define portLONG		long
 #define portSHORT		short
-#define portSTACK_TYPE	unsigned portLONG
-#define portBASE_TYPE	long
+#define StackType_t		unsigned portLONG
+#define BaseType_t		long
+#define UBaseType_t		unsigned long
 
 #if( configUSE_16_BIT_TICKS == 1 )
-	typedef unsigned portSHORT portTickType;
-	#define portMAX_DELAY ( portTickType ) 0xffff
+	typedef unsigned portSHORT TickType_t;
+	#define portMAX_DELAY ( TickType_t ) 0xffff
 #else
-	typedef unsigned portLONG portTickType;
-	#define portMAX_DELAY ( portTickType ) 0xffffffff
+	typedef unsigned portLONG TickType_t;
+	#define portMAX_DELAY ( TickType_t ) 0xffffffff
 #endif
 /*-----------------------------------------------------------*/	
 
 /* Architecture specifics. */
 #define portSTACK_GROWTH				( -1 )
-#define portTICK_RATE_MS				( ( portTickType ) 1000 / configTICK_RATE_HZ )		
+#define portTICK_PERIOD_MS				( ( TickType_t ) 1000 / configTICK_RATE_HZ )		
 #define portBYTE_ALIGNMENT				4
 #define portNOP()                   	asm volatile ( "NOP" )
 #define portCRITICAL_NESTING_IN_TCB		1
@@ -123,9 +124,8 @@ extern void vTaskExitCritical( void );
 extern void fixed_alt_irq_disable_all( void );
 extern void fixed_alt_irq_enable_all( void );
 
-
-#define portDISABLE_INTERRUPTS()    fixed_alt_irq_disable_all()
-#define portENABLE_INTERRUPTS()     fixed_alt_irq_enable_all()
+#define portDISABLE_INTERRUPTS()	fixed_alt_irq_disable_all()
+#define portENABLE_INTERRUPTS()		fixed_alt_irq_enable_all()
 #define portENTER_CRITICAL()        if (xTaskGetSchedulerState()) vTaskEnterCritical()
 #define portEXIT_CRITICAL()         if (xTaskGetSchedulerState()) vTaskExitCritical()
 /*-----------------------------------------------------------*/

@@ -156,7 +156,7 @@ restore_context:
 							# Leave a gap for muldiv 0.
 	ldw		at, 8(sp)
 
-	ldw		r2, 12(sp)		# now restore r2 from the stack
+	ldw		r2, 12(sp)
 	ldw		r3, 16(sp)
 	ldw		r4, 20(sp)
 	ldw		r5, 24(sp) 

@@ -17,8 +17,8 @@
 /*
  * Semaphores used to protect the heap and environment
  */
-extern xSemaphoreHandle alt_heapsem;
-extern xSemaphoreHandle alt_envsem;
+extern SemaphoreHandle_t alt_heapsem;
+extern SemaphoreHandle_t alt_envsem;
 
 /*
  * Tick handler for FreeRTOS

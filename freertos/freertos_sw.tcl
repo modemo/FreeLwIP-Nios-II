@@ -13,7 +13,7 @@ set_sw_property display_name "FreeRTOS"
 set_sw_property extends_bsp_type HAL
 
 # The version of this software
-set_sw_property version 7.5.2
+set_sw_property version 8.1.2
 
 # Location in generated BSP that above sources will be copied into
 # Suggestion: Keep this the same (case and all) as that where the OS
@@ -93,6 +93,8 @@ add_sw_property systemh_generation_script freertos_systemh_generation.tcl
 #
 # System settings
 #
+add_sw_setting boolean system_h_define system.backward_compatibility OS_ENABLE_BACKWARD_COMPATIBILITY 0 "Enable backwart compatibility for applications written for older versions of FreeRTOS."
+
 add_sw_setting boolean system_h_define system.preemption OS_USE_PREEMPTION 1 "Set to 1 to use the preemptive kernel, or 0 to use the cooperative kernel."
 
 add_sw_setting boolean system_h_define system.idle_hook OS_USE_IDLE_HOOK 0 "Set to 1 if you wish to use an idle hook, or 0 to omit an idle hook."

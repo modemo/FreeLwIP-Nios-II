@@ -32,11 +32,11 @@
 
 :exec_nios_shell
 @ rem get cygwin paths from install directory and quartus toolchain directory
-@ for /f %%i in ('%nios%\quartus\bin\cygwin\bin\pwd.exe') do set cyginst=%%i
+@ for /f %%i in ('%nios%\quartus\bin64\cygwin\bin\pwd.exe') do set cyginst=%%i
 
 @ cd "%nios%" 2> tmp.txt
 @ %nios:~0,2%
-@ for /f %%i in ('%nios%\quartus\bin\cygwin\bin\pwd.exe') do set cygnios=%%i
+@ for /f %%i in ('%nios%\quartus\bin64\cygwin\bin\pwd.exe') do set cygnios=%%i
 @ cd "%past%" 2> tmp.txt
 @ %past:~0,2%
 
